@@ -5,22 +5,32 @@ import { useState } from "react";
 import Link from "next/link";
 import Input from "../components/shared/input.component";
 import Button from "../components/shared/button.component";
+import { useRouter } from "next/navigation";
 
 export default function Cadastro() {
+  const router = useRouter();
+
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [confirmarSenha, setConfirmarSenha] = useState("");
+  
 
   function cadastrar(evento: React.FormEvent<HTMLFormElement>) {
-    evento.preventDefault();
+  evento.preventDefault();
 
-    console.log("Formulário preenchido:", {
-      nome,
-      email,
-      senhasCoincidem: senha === confirmarSenha,
-    });
+  if (!nome.trim() || !email.trim() || !senha || !confirmarSenha) {
+    alert("Preencha todos os campos.");
+    return;
   }
+
+  if (senha !== confirmarSenha) {
+    alert("As senhas não coincidem.");
+    return;
+  }
+
+  router.push("/");
+}
 
   return (
     <main className="pagina-cadastro">
