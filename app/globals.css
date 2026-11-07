@@ -1,3 +1,4 @@
+
 @import "tailwindcss";
 
 :root {
@@ -12,15 +13,95 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Página de cadastro */
+.pagina-cadastro {
+  @apply flex min-h-screen items-center justify-center bg-gray-50 p-4;
+}
+
+.card-cadastro {
+  @apply w-full max-w-md rounded-lg bg-white p-8 shadow-md;
+}
+
+.titulo-cadastro {
+  @apply text-center text-3xl font-bold text-blue-600;
+}
+
+.subtitulo-cadastro {
+  @apply mb-6 mt-2 text-center text-xl font-semibold text-gray-900;
+}
+
+.formulario-cadastro {
+  @apply flex flex-col gap-4;
+}
+
+.campo-formulario {
+  @apply flex flex-col gap-1;
+}
+
+.campo-formulario label {
+  @apply text-sm font-medium text-gray-700;
+}
+
+.campo-formulario input {
+  @apply rounded-md border border-gray-300 bg-white p-3 text-gray-900;
+}
+
+.botao-primario {
+  @apply cursor-pointer rounded-md bg-blue-600 p-3 font-semibold text-white hover:bg-blue-700;
+}
+
+.texto-login {
+  @apply mt-5 text-center text-sm text-gray-600;
+}
+
+.link-login {
+  @apply font-semibold text-blue-600 hover:underline;
+}
+
+/* Mural de Trocas */
+
+.mural-conteudo {
+  @apply flex flex-col gap-6;
+}
+
+.mural-pesquisa {
+  @apply w-full rounded-md border border-gray-300
+    bg-white p-3 text-gray-900;
+}
+
+.mural-lista {
+  @apply flex flex-wrap gap-4;
+}
+
+.mural-card {
+  @apply flex w-full flex-col gap-3 rounded-lg
+    border border-gray-200 bg-white p-5 shadow-sm
+    sm:w-64;
+}
+
+.mural-titulo {
+  @apply text-lg font-bold text-gray-900;
+}
+
+.mural-categoria {
+  @apply text-sm font-medium text-blue-600;
+}
+
+.mural-descricao {
+  @apply flex-1 text-sm text-gray-600;
+}
+
+.mural-botao {
+  @apply rounded-md bg-blue-600 p-3 text-center
+    font-semibold text-white hover:bg-blue-700;
+}
+
+.mural-vazio {
+  @apply text-sm text-gray-600;
 }
