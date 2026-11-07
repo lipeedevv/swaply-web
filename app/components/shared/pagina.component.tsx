@@ -2,6 +2,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { House, UserPlus, LogOut } from "lucide-react";
 
 type PaginaProps = {
@@ -15,8 +16,10 @@ export default function Pagina({
   titulo,
   subtitulo,
 }: PaginaProps) {
+  const router = useRouter();
   function sair() {
     console.log("Saindo da conta...");
+    router.push("/login");
   }
 
   return (
