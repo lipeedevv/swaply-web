@@ -1,33 +1,39 @@
-
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import Pagina from "./components/shared/pagina.component";
+import ModalDetalhes from "./components/shared/modal-detalhes.component";
 
 const itens = [
   {
-    id: 1,
+    id: "1",
     nome: "Livro de Programação",
     categoria: "Livros",
+    estado: "Bom",
     descricao: "Livro em bom estado de conservação.",
+    contato: "joao@email.com",
   },
   {
-    id: 2,
+    id: "2",
     nome: "Fone de Ouvido",
     categoria: "Eletrônicos",
+    estado: "Seminovo",
     descricao: "Fone funcionando normalmente.",
+    contato: "maria@email.com",
   },
   {
-    id: 3,
+    id: "3",
     nome: "Mochila",
     categoria: "Acessórios",
+    estado: "Usado",
     descricao: "Mochila usada, em ótimo estado.",
+    contato: "carlos@email.com",
   },
 ];
 
 export default function Home() {
   const [pesquisa, setPesquisa] = useState("");
+  const [itemSelecionado, setItemSelecionado] = useState<any>(null);
 
   const itensFiltrados = itens.filter((item) =>
     item.nome.toLowerCase().includes(pesquisa.toLowerCase())
@@ -57,12 +63,22 @@ export default function Home() {
 
               <p className="mural-descricao">{item.descricao}</p>
 
-              <Link
-                href={`/item/${item.id}`}
+              {/* Botão para ver detalhes */}
+              <button
+                onClick={() =>
+                  setItemSelecionado({
+                    id: String(item.id),
+                    titulo: item.nome,
+                    categoria: item.categoria,
+                    estado: item.estado,
+                    descricao: item.descricao,
+                    contato: item.contato,
+                  })
+                }
                 className="mural-botao"
               >
                 Ver detalhes
-              </Link>
+              </button>
             </div>
           ))}
         </div>
@@ -70,6 +86,12 @@ export default function Home() {
         {itensFiltrados.length === 0 && (
           <p className="mural-vazio">Nenhum item encontrado.</p>
         )}
+
+        {/* Modal Detalhes */}
+        <ModalDetalhes
+          item={itemSelecionado}
+          aoFechar={() => setItemSelecionado(null)}
+        />
       </section>
     </Pagina>
   );
